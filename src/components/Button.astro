@@ -1,5 +1,18 @@
 ---
-const { text } = Astro.props;
+const { type = "button",
+        size = "md",
+        isFilled,
+        classes
+      } = Astro.props;
 ---
 
-<button>{text}</button>
+<!-- things we might want in a button -->
+<!-- 1. type: button | submit -->
+<!-- 2. size: sm, md, lg -->
+<!-- 3. theme: colorTheme -->
+<!-- 4. isFilled? -->
+<!-- 5. classes : button attr -->
+
+<button class:list={[ classes, { filled: isFilled } ]} {type} data-size={size}>
+    <slot />
+</button>
