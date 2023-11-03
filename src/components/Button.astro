@@ -2,8 +2,13 @@
 const { type = "button",
         size = "md",
         isFilled,
-        classes
+        theme = 'light',
+        classes,
+        ...rest
       } = Astro.props;
+
+const background = `var(--${theme})`;
+const foreground = theme === 'light' ? 'var(--primary)' : 'var(--light)';
 ---
 
 <!-- things we might want in a button -->
@@ -13,6 +18,28 @@ const { type = "button",
 <!-- 4. isFilled? -->
 <!-- 5. classes : button attr -->
 
-<button class:list={[ classes, { filled: isFilled } ]} {type} data-size={size}>
+<button class:list={[ classes, { filled: isFilled } ]} 
+        {type} 
+        data-size={size}
+        {...rest}>
     <slot />
 </button>
+
+<style define:vars={{
+    background,
+    foreground
+}}>
+    button {
+        font-family: inherit;
+        cursor: pointer;
+
+        --bcg: var(--background); 
+        --clr: var(--foreground); 
+
+        background-color: var(--bcg);
+        color: var(--clr);
+
+        border: .2em solid var(--bcg);
+        padding: .4em 1.25em;
+    }
+</style>
