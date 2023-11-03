@@ -14,6 +14,10 @@ import Button from '../components/Button.astro';
 	</head>
 	<body>
 		<h1>Astro Buttons</h1>
-		<Button isFilled theme="primary">Click Here</Button>
+		<Button id="btn1" isFilled theme="danger" size="lg">Click Here</Button>
 	</body>
 </html>
+
+<script>
+	document.querySelector('#btn1')?.addEventListener('click', () => alert('Yo!'));
+</script>
